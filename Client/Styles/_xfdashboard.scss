@@ -1,0 +1,108 @@
+﻿
+.xftable {
+    font-size: 0.75rem;
+    display: inline-block;
+    vertical-align: top;
+    max-width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.xftable,
+.xftable--flip tbody {
+    -webkit-overflow-scrolling: touch;
+    background: radial-gradient(left, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center, radial-gradient(right, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
+    background-size: 10px 100%, 10px 100%;
+    background-attachment: scroll, scroll;
+    background-repeat: no-repeat;
+}
+
+.xftable td:first-child,
+.xftable--flip tbody tr:first-child {
+    background-image: -webkit-gradient(linear, left top, right top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
+    background-image: linear-gradient(to right, white 50%, rgba(255, 255, 255, 0) 100%);
+    background-repeat: no-repeat;
+    background-size: 20px 100%;
+}
+
+.xftable td:last-child,
+.xftable--flip tbody tr:last-child {
+    background-image: -webkit-gradient(linear, right top, left top, color-stop(50%, white), to(rgba(255, 255, 255, 0)));
+    background-image: linear-gradient(to left, white 50%, rgba(255, 255, 255, 0) 100%);
+    background-repeat: no-repeat;
+    background-position: 100% 0;
+    background-size: 20px 100%;
+}
+
+.xftable th {
+    font-size: 11px;
+    text-align: left;
+    text-transform: uppercase;
+    background: #f2f0e6;
+}
+
+.xftable th,
+.xftable td {
+    padding: 6px 8px;
+    border: 1px solid #d9d7ce;
+}
+
+.xftable--flip {
+    display: -webkit-box;
+    display: flex;
+    overflow: hidden;
+    background: none;
+}
+
+.xftable--flip thead {
+    display: -webkit-box;
+    display: flex;
+    flex-shrink: 0;
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
+    min-width: min-content;
+}
+
+.xftable--flip tbody {
+    display: -webkit-box;
+    display: flex;
+    position: relative;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.xftable--flip tr {
+    display: -webkit-box;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    flex-direction: column;
+    min-width: -webkit-min-content;
+    min-width: -moz-min-content;
+    min-width: min-content;
+    flex-shrink: 0;
+}
+
+.xftable--flip td,
+.xftable--flip th {
+    display: block;
+}
+
+.xftable--flip td {
+    background-image: none !important;
+    border-left: 0;
+}
+
+.xftable--flip th:not(:last-child),
+.xftable--flip td:not(:last-child) {
+    border-bottom: 0;
+}
+
+.text-truncate {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 1px;
+}

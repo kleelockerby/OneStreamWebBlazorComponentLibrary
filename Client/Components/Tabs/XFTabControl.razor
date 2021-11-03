@@ -1,0 +1,60 @@
+﻿@inherits XFComponentBase
+
+<CascadingValue Value="@this">
+    @if (TabPosition == TabPosition.Top)
+    {
+        @if ( Items != null )
+        {
+            <ul class="@ClassNames" style="@StyleNames" @attributes="@Attributes">@Items</ul>
+        }
+        @if ( Content != null )
+        {
+            <div class="@ContentClassNames" @attributes="@Attributes">@Content</div>
+        }
+    }
+    else if (TabPosition == TabPosition.Bottom)
+    {
+        @if ( Content != null )
+        {
+            <div class="@ContentClassNames" @attributes="@Attributes">@Content</div>
+        }
+        @if ( Items != null )
+        {
+            <ul class="@ClassNames" style="@StyleNames" @attributes="@Attributes">@Items</ul>
+        }
+    }
+    else if ( TabPosition == TabPosition.Left )
+    {
+        <XFRow>
+            <div class="col" ColumnSize="ColumnSize.IsAuto">
+                @if ( Items != null )
+                {
+                    <ul class="@ClassNames" style="@StyleNames" @attributes="@Attributes"> @Items</ul>
+                }
+            </div>
+            <XFColumn>
+                @if (Content != null)
+                {
+                    <div class="@ContentClassNames" @attributes="@Attributes">@Content</div>
+                }
+            </XFColumn>
+        </XFRow>
+    }
+    else if (TabPosition == TabPosition.Right)
+    {
+            <XFRow>
+                <XFColumn>
+                    @if (Content != null)
+                    {
+                        <div class="@ContentClassNames" @attributes="@Attributes">@Content</div>
+                    }
+            </XFColumn>
+            <XFColumn>
+                @if (Content != null)
+                {
+                    <ul class="@ClassNames" style="@StyleNames" @attributes="@Attributes">@Items</ul>
+                }
+            </XFColumn>
+        </XFRow>
+    }
+</CascadingValue>

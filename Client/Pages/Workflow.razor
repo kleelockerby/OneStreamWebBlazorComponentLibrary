@@ -1,0 +1,58 @@
+﻿ <div class="form-group" style="margin: 50px;">
+    @*<XFButton Type=ButtonType.Button Clicked="@(()=>ShowModal( ModalSize.Default ))">Open Modal</XFButton>*@
+    @*<XFButton Type=ButtonType.Button Clicked="@(()=>ShowModal( ))">Open Modal</XFButton>*@
+    <div style="width: 160px;">
+        @*<button type="button" class="btn btn-primary" @onclick="ShowModal">Show</button>*@
+        @*<button type="button" class="btn btn-primary">Show</button>*@
+
+        <XFModal @ref="xfModal">
+            <HeaderTemplate>
+                <div style="display: inline-block; padding-right: 10px;"><image src="images/logoOneStream24.png" /></div>
+                <div style="display:inline;">EBIT Variance</div>
+                <div class="modal-header-right"><image src="images/btnClose20x20.png" style="width: 16px; height: 16px;" /></div>
+                <div class="modal-header-right"><image src="images/btnMax20x20.png" style="width: 16px; height: 16px;" /></div>
+                <div class="modal-header-right"><image src="images/btnBattery20x20.png" style="width: 16px; height: 16px;" /></div>
+            </HeaderTemplate>
+            <BodyTemplate>
+                <div class="grid-table">
+                    <div class="grid-table-row">
+                        <div class="grid-table-cell"><image src="images/btnPropertyGridPlus.png" style="width: 14px; height: 14px;" /></div>
+                        <div class="grid-table-cell">Parameters</div>
+                        <div class="grid-table-cell"></div>
+                    </div>
+                </div>
+            </BodyTemplate>
+            <FooterTemplate>
+                <button type="button" class="btn btn-sm" @onclick="HideModal">Save</button>
+                <button type="button" class="btn btn-sm" data-dismiss="modal">Close</button>
+            </FooterTemplate>
+        </XFModal>
+
+    </div>
+
+</div>
+
+@code 
+{
+
+    private XFModal xfModal;
+    private bool ShowDashboard = false;
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            xfModal.ShowModal();
+            StateHasChanged();
+        }
+
+    }
+
+    private void HideModal()
+    {
+        xfModal.HideModal();
+        ShowDashboard = true;
+        StateHasChanged();
+    }
+
+}

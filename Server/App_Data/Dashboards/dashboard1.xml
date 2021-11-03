@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dashboard CurrencyCulture="en-US">
+ <Title Text="Sales Dashboard" />
+ <DataSources>
+  <ObjectDataSource Name="Table" ComponentName="dashboardObjectDataSource1">
+   <DataSource Type="System.Data.DataTable, System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+   <CalculatedFields>
+    <CalculatedField Name="DateTime" Expression="ToDateTime([Time])" DataType="Auto" />
+    <CalculatedField Name="BudgetV2" Expression="Iif([Scenario] = 'BudgetV2', [Amount] * 1.05, 0)" DataType="Auto" />
+    <CalculatedField Name="TargetBudget" Expression="Iif([Scenario] = 'BudgetV2', [Amount] * 0.95, 0)" DataType="Auto" />
+    <CalculatedField Name="UD2v1" Expression="Iif([UD2] In ('Mach5', 'Mach10'), [UD2], '')" DataType="Auto" />
+   </CalculatedFields>
+  </ObjectDataSource>
+ </DataSources>
+ <Parameters>
+  <Parameter Name="MyDateTimeStart" Type="System.DateTime, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" AllowMultiselect="true" SelectAllValues="true" Description="MyDateTimeStart">
+   <DynamicListLookUpSettings DataSourceName="dashboardObjectDataSource1" ValueMember="DateTime" DisplayMember="Time" SortByMember="DateTime" TableName="Table" />
+  </Parameter>
+ </Parameters>
+ <Items>
+  <Chart ComponentName="chartDashboardItem1" Name="Sales By Qtr (Product,Region)" DataSource="dashboardObjectDataSource1" TableName="Table">
+   <InteractivityOptions MasterFilterMode="Multiple" />
+   <DataItems>
+    <Dimension DataMember="DateTime" DateTimeGroupInterval="QuarterYear" ColoringMode="Hue" DefaultId="DataItem0" />
+    <Measure DataMember="UD3" SummaryType="Mode" DefaultId="DataItem2" />
+    <Measure DataMember="Amount" Name="Actual" DefaultId="DataItem1" />
+    <Dimension DataMember="Time" DefaultId="DataItem3" />
+    <Dimension DataMember="Scenario" DefaultId="DataItem4" />
+    <Dimension DataMember="UD2" DefaultId="DataItem5" />
+    <Dimension DataMember="UD3" DefaultId="DataItem6" />
+   </DataItems>
+   <HiddenDimensions>
+    <Dimension DefaultId="DataItem3" />
+    <Dimension DefaultId="DataItem4" />
+   </HiddenDimensions>
+   <HiddenMeasures>
+    <Measure DefaultId="DataItem2" />
+   </HiddenMeasures>
+   <Arguments>
+    <Argument DefaultId="DataItem0" />
+    <Argument DefaultId="DataItem5" />
+    <Argument DefaultId="DataItem6" />
+   </Arguments>
+   <Panes>
+    <Pane Name="Pane 1">
+     <AxisY ShowGridLines="false" />
+     <Series>
+      <Simple>
+       <Value DefaultId="DataItem1" />
+       <PointLabelOptions ContentType="Value" />
+      </Simple>
+     </Series>
+    </Pane>
+   </Panes>
+  </Chart>
+  <RangeFilter ComponentName="rangeFilterDashboardItem1" Name="Range Filter 1" DataSource="dashboardObjectDataSource1" IsMasterFilterCrossDataSource="true" TableName="Table">
+   <ColoringOptions MeasuresColoringMode="Hue" />
+   <InteractivityOptions IgnoreMasterFilters="false" />
+   <DataItems>
+    <Dimension DataMember="DateTime" DateTimeGroupInterval="MonthYear" DefaultId="DataItem0" />
+    <Dimension DataMember="DateTime" DateTimeGroupInterval="QuarterYear" DefaultId="DataItem2" />
+    <Measure DataMember="Amount" DefaultId="DataItem1" />
+    <Dimension DataMember="Scenario" DefaultId="DataItem3" />
+   </DataItems>
+   <HiddenDimensions>
+    <Dimension DefaultId="DataItem3" />
+   </HiddenDimensions>
+   <SeriesDimensions>
+    <SeriesDimension DefaultId="DataItem2" />
+   </SeriesDimensions>
+   <Argument DefaultId="DataItem0" />
+   <Series>
+    <Simple SeriesType="StackedBar">
+     <Value DefaultId="DataItem1" />
+    </Simple>
+   </Series>
+   <ColorScheme>
+    <Entry DataSource="dashboardObjectDataSource1" Color="-16737793">
+     <MeasureKey>
+      <Definition DataMember="Amount" />
+     </MeasureKey>
+    </Entry>
+   </ColorScheme>
+  </RangeFilter>
+  <ChoroplethMap ComponentName="choroplethMapDashboardItem1" Name="US Sales By Region" DataSource="dashboardObjectDataSource1" ShapefileArea="USA" LockNavigation="true" ShapeTitleAttributeName="POSTAL" AttributeName="NAME" ToolTipAttributeName="REGION" TableName="Table">
+   <InteractivityOptions MasterFilterMode="Multiple" />
+   <DataItems>
+    <Dimension DataMember="UD3" DefaultId="DataItem0" />
+    <Measure DataMember="Amount" DefaultId="DataItem1" />
+    <Measure DataMember="Entity" Name="Entity" SummaryType="Mode" DefaultId="DataItem2" />
+    <Measure DataMember="Scenario" Name="Scenario" SummaryType="Mode" DefaultId="DataItem4" />
+    <Dimension DataMember="Scenario" DefaultId="DataItem5" />
+    <Dimension DataMember="DateTime" DateTimeGroupInterval="MonthYear" DefaultId="DataItem6" />
+    <Measure DataMember="View" Name="View" SummaryType="Mode" DefaultId="DataItem7" />
+   </DataItems>
+   <HiddenDimensions>
+    <Dimension DefaultId="DataItem5" />
+    <Dimension DefaultId="DataItem6" />
+   </HiddenDimensions>
+   <ViewArea TopLatitude="49.369672064487254" BottomLatitude="22.722765208057595" LeftLongitude="-124.70997774915153" RightLongitude="-66.987022055984482" CenterPointLatitude="37.20824763267364" CenterPointLongitude="-95.848499902568008" />
+   <MapLegend Visible="true" Position="BottomCenter" Orientation="Horizontal" />
+   <WeightedLegend />
+   <TooltipMeasures>
+    <TooltipMeasure DefaultId="DataItem2" />
+    <TooltipMeasure DefaultId="DataItem7" />
+    <TooltipMeasure DefaultId="DataItem4" />
+   </TooltipMeasures>
+   <AttributeDimension DefaultId="DataItem0" />
+   <Maps>
+    <ValueMap>
+     <Value DefaultId="DataItem1" />
+     <UniformScale />
+     <GradientPalette StartColor="-7876885" EndColor="-16777088" />
+    </ValueMap>
+   </Maps>
+  </ChoroplethMap>
+  <Gauge ComponentName="gaugeDashboardItem1" Name="Geo Sales to Target" DataSource="dashboardObjectDataSource1" ContentLineCount="5" ViewType="CircularHalf" TableName="Table">
+   <InteractivityOptions MasterFilterMode="Multiple" IsDrillDownEnabled="true" />
+   <DataItems>
+    <Dimension DataMember="UD3" SortOrder="Descending" SortByMeasure="DataItem1" DefaultId="DataItem0" />
+    <Measure DataMember="BudgetV2" DefaultId="DataItem1" />
+    <Measure DataMember="TargetBudget" DefaultId="DataItem2" />
+    <Dimension DataMember="DateTime" DateTimeGroupInterval="MonthYear" DefaultId="DataItem3" />
+    <Dimension DataMember="UD2" DefaultId="DataItem4" />
+   </DataItems>
+   <HiddenDimensions>
+    <Dimension DefaultId="DataItem3" />
+   </HiddenDimensions>
+   <SeriesDimensions>
+    <SeriesDimension DefaultId="DataItem0" />
+    <SeriesDimension DefaultId="DataItem4" />
+   </SeriesDimensions>
+   <GaugeElement>
+    <ActualValue DefaultId="DataItem1" />
+    <TargetValue DefaultId="DataItem2" />
+    <AbsoluteVariationNumericFormat />
+    <PercentVariationNumericFormat />
+    <PercentOfTargetNumericFormat />
+   </GaugeElement>
+  </Gauge>
+ </Items>
+ <ColorScheme>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16764007" TableName="Table">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-01-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16764673" TableName="Table">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-04-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16750849" TableName="Table">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-07-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16737793" TableName="Table">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-10-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16764007" TableName="Table">
+   <MeasureKey>
+    <Definition DataMember="Amount" />
+   </MeasureKey>
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-01-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16737793" TableName="Table">
+   <MeasureKey>
+    <Definition DataMember="Amount" />
+   </MeasureKey>
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-10-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16763905" TableName="Table">
+   <MeasureKey>
+    <Definition DataMember="Amount" />
+   </MeasureKey>
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-04-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry DataSource="dashboardObjectDataSource1" Color="-16750849" TableName="Table">
+   <MeasureKey>
+    <Definition DataMember="Amount" />
+   </MeasureKey>
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="DateTime" DateTimeGroupInterval="QuarterYear" />
+     <Value Type="System.DateTime" Value="2018-07-01T00:00:00.0000000" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-13408615">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Drivers" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-13408513">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Fairway Woods" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-13408615">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Hybrids" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-9198896">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Iron Sets" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-16764994">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Putters" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+  <Entry Color="-16768114">
+   <DimensionKeys>
+    <DimensionKey>
+     <Definition DataMember="UD2" />
+     <Value Type="System.String" Value="Wedges" />
+    </DimensionKey>
+   </DimensionKeys>
+  </Entry>
+ </ColorScheme>
+ <LayoutTree>
+  <LayoutGroup Weight="100">
+   <LayoutItem DashboardItem="gaugeDashboardItem1" Weight="15.718157181571815" />
+   <LayoutGroup Orientation="Vertical" Weight="84.281842818428188">
+    <LayoutItem DashboardItem="rangeFilterDashboardItem1" Weight="15.605493133583021" />
+    <LayoutGroup Weight="84.394506866416975">
+     <LayoutItem DashboardItem="choroplethMapDashboardItem1" Weight="67.60450160771704" />
+     <LayoutItem DashboardItem="chartDashboardItem1" Weight="32.39549839228296" />
+    </LayoutGroup>
+   </LayoutGroup>
+  </LayoutGroup>
+ </LayoutTree>
+</Dashboard>

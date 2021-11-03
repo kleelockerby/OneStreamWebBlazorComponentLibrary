@@ -1,0 +1,26 @@
+﻿@inherits XFComponentBase
+
+<li class="nav-item">
+    @if (this.ItemsData?.Count > 0)
+    {
+        <a class="@AnchorClasses" @onclick="@ToggleMenu" @attributes="@Attributes" title="@Title"><i class="@IconClassNames"></i><span style="cursor: pointer;">@Title</span></a>
+        <ul class="@UlClassNames">
+            @foreach (SidebarItemData itemData in this.ItemsData)
+            {
+                <li>
+                    <XFLink To="@itemData.To" class="@itemData.AnchorClassNames" @attributes="@Attributes" Title="@itemData.Title">
+                        <i class="@itemData.IconClassNames"></i>
+                        <span class="pointer">@itemData.Title</span>
+                    </XFLink>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <XFLink class="@AnchorClasses" @attributes="@Attributes" Title="@Title">
+            <i class="@IconClassNames"></i><span style="cursor: pointer;">@Title</span>
+        </XFLink>
+    }
+</li>
+

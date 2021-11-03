@@ -1,0 +1,42 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFListBoxBase<TItem>
+@typeparam TItem
+
+<div class="@ClassNames" style="@StyleNames" @attributes="@Attributes">
+    <div class="xf-combo-wrapper" style="@StyleNames" @attributes="@Attributes">
+        <XFTextBox id="txtCombo1" @bind-Value="@SelectedText" ValueInputChanged="@TextBox_InputChanged" OnClicked="@XFTextBox_Clicked" Placeholder="@PlaceHolder" PreventDefault="true" StopPropagation="true"></XFTextBox>
+        <XFLink id="btnCombo1" LinkClassNames="LinkClasses.ComboBoxButton" Clicked="@XFLink_Clicked" />
+        <span style="display: @(AllowClear == true ? "block" : "none")" @onclick="@BtnClose_Clicked"><i class="fa fa-close"></i></span>
+    </div>
+    <div class="@ListBoxClassNames" style="@StyleNames" TextField="@TextField" ValueField="@ValueField" TItem="TItem" @attributes="@Attributes">
+        <ul class="@ULClassNames" style="height: @($"{ListBoxHeight}px");" @attributes="@Attributes">
+            @if (DataSourceView != null)
+            {
+                for (int i = 0; i < DataSourceView.Count; ++i)
+                {
+                    var item = DataSourceView[i];
+                    string text = TextField?.Invoke(item);
+                    bool selected = (text == this.SelectedText) ? true : false;
+                    <XFListBoxItem Text="@text" TItem="TItem" DataItem="item" IsSelected="@selected" ListItemHeight="@ListItemHeight" SelectedListBoxItemChanged="@ListBox_ItemChanged"></XFListBoxItem>
+                }
+            }
+        </ul>
+    </div>
+</div>
+
+
+
+@*if (ItemTemplate == null)
+{
+    <XFListBoxItem Text="@text" TItem="TItem" DataItem="item" IsSelected="@selected" ListItemHeight="@ListItemHeight" SelectedListBoxItemChanged="@ListBox_ItemChanged"></XFListBoxItem>
+}
+else
+{
+    <XFListBoxItem Text="@text" TItem="TItem" DataItem="item" IsSelected="@selected" ListItemHeight="@ListItemHeight" SelectedListBoxItemChanged="@ListBox_ItemChanged">
+        <ItemTemplate>
+            <i class="fa fa-home mr-2" style="color: #0073e0;"></i>
+            <div style="display: inline-block; width: 60%; border-right: 1px solid #ccc; color: #0073e0;">@text</div>
+            <div style="display: inline-block; padding-left: 10px ; color: #e08e5e;">Country</div>
+        </ItemTemplate>
+    </XFListBoxItem>
+}*@

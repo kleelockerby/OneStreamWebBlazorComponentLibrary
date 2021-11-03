@@ -1,0 +1,18 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFInputBase<string>
+
+<input class="@ClassNames"
+       type="@Type"
+       value="@CurrentValue"
+       @onchange="@OnChangeAsync"
+       @oninput="@OnInputAsync"
+       @onclick="@OnClickHandler"
+       @onclick:preventDefault="@PreventDefault"
+       style="@StyleNames"
+       placeholder="@Placeholder"
+       disabled="@Disabled"
+       readonly="@ReadOnly"
+       maxlength="@MaxLength"
+       size="@VisibleCharacters"
+       @attributes="@Attributes" />
+

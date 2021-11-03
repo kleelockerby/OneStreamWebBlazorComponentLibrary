@@ -1,0 +1,16 @@
+﻿@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager  navigationManager 
+
+    <AuthorizeView>
+        <span><i class="fa fa-user" aria-hidden="true"></i>&nbsp;&nbsp;@context?.User?.FindFirst("http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name")?.Value, @context?.User?.FindFirst("ApplicationName")?.Value (@context?.User?.FindFirst("BaseUrl")?.Value)  </span> &nbsp;&nbsp;&nbsp; <RadzenButton Text="Logout" Click="Logout" class="mr-2" />
+    </AuthorizeView>
+
+@code {
+
+    async Task Logout()
+    {
+        var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
+        await localStateProvider.LogoutAsync();
+        navigationManager.NavigateTo("/authentication/login");
+    }
+}

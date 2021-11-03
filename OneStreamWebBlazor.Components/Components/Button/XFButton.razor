@@ -1,0 +1,6 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFComponentBase
+
+<button @ref="@ElementRef" id="@ElementId" type="@Type.ToButtonTypeString()" class="@ClassNames" style="@StyleNames" disabled="@Disabled" aria-pressed="@Active" @onclick="@ClickHandler" @attributes="@Attributes">
+    @ChildContent
+</button>

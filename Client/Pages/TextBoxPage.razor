@@ -1,0 +1,87 @@
+﻿@using System.ComponentModel.DataAnnotations
+
+<style>
+    .validation-message {
+        color: #ff0000;
+    }
+</style>
+
+@*<EditForm Model="@person" OnValidSubmit="OnSubmit">
+            <DataAnnotationsValidator />
+
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <XFTextBox id="Name" @bind-Value="@person.Name" ValueInputChanged="@OnInputChanged" Style="width: 300px;"></XFTextBox>
+                <ValidationMessage For="@( () => person.Name)" />
+            </div>
+
+            <div style="margin-top: 20px;">
+                <button type="submit">Submit</button>
+            </div>
+
+    </EditForm>*@
+
+<XFTextBox id="Name" Value="@person.Name" ValueInputChanged="@OnInputChanged" ValueChanged="@OnTextChanged" Style="width: 300px;"></XFTextBox>
+
+
+<div style="margin-top: 40px;">
+    <span>Results: </span>@results
+</div>
+
+<div style="margin-top: 40px;">
+    @resultChars
+</div>
+
+
+
+@code
+{
+    public class Person
+    {
+        [Required]
+        [StringLength(20, ErrorMessage = "Name is Required.")]
+        public string Name { get; set; } = null;
+    }
+
+    Person person = new Person();
+
+    //private EditContext editContext;
+
+    //protected override void OnInitialized()
+    //{
+    //    editContext = new EditContext(person);
+    //}
+
+
+    protected string results;
+    protected string resultChars;
+
+    protected string selectedText;
+    protected string selectedChars;
+
+    protected void OnTextChanged(string newValue)
+    {
+        person.Name = newValue;
+        selectedText = newValue;
+        results = selectedText;
+        StateHasChanged();
+    }
+
+    protected override void OnInitialized()
+    {
+        results = person.Name;
+    }
+
+    protected void OnInputChanged(string newChar)
+    {
+        selectedChars = newChar;
+        resultChars = selectedChars;
+    }
+
+    protected void OnSubmit()
+    {
+        ///bool isValid = editContext.Validate();
+        results = person.Name;
+        //results = isValid.ToString();
+    }
+}

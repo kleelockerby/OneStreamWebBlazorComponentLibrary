@@ -1,0 +1,10 @@
+﻿@page "/authentication/redirecttologin"
+
+@inject NavigationManager navigationManager 
+
+@code {
+    protected override void OnInitialized()
+    {
+        navigationManager.NavigateTo("/authentication/login"); 
+    }
+}

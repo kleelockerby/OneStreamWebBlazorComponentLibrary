@@ -1,0 +1,35 @@
+﻿@page "/dashboards/{DashboardId}/{DashboardName}"
+
+<AuthorizeView>
+
+    @if (string.IsNullOrEmpty(DashboardId))
+    {
+        @:None
+    }
+    else
+    {
+        <div style="margin-top: 50px;">
+            <div style="display: inline-block; margin-right: 15px;">Dashboard ID: </div>
+            <div style="display: inline-block; margin-right: 15px;"> @DashboardId</div>
+        </div>
+
+        @if (string.IsNullOrEmpty(DashboardName))
+        {
+            @:None
+        }
+        else
+        {
+            <div style="margin-top: 50px;">
+                <div style="display: inline-block; margin-right: 15px;">Dashboard Name: </div>
+                <div style="display: inline-block; margin-right: 15px;"> @DashboardName</div>
+            </div>
+        }
+    }
+
+@code
+{
+    [Parameter] public string DashboardId { get; set; }
+    [Parameter] public string DashboardName { get; set; }
+}
+
+</AuthorizeView>

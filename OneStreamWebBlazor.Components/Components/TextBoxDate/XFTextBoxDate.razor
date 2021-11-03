@@ -1,0 +1,12 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFInputBase<TValue>
+@typeparam TValue
+
+<input type="date" 
+       value="@CurrentValueAsString" 
+       @onchange="@OnChangeAsync"
+       disabled="@Disabled" 
+       readonly="@ReadOnly" 
+       class="@ClassNames" 
+       style="@StyleNames" 
+       @attributes="@Attributes" />

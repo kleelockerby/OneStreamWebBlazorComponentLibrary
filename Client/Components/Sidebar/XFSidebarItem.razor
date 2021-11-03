@@ -1,0 +1,16 @@
+﻿@inherits XFComponentBase
+
+<li class="@ClassNames">
+    <XFLink @attributes="@Attributes" Title="@Title"><i class="@IconClassNames"></i><span style="cursor: pointer;">@Title</span></XFLink>
+    <ul class="@ULClassNames">
+        @if (this.ItemsData?.Count > 0)
+        {
+            foreach (SidebarItemData itemData in this.ItemsData)
+            {
+                <XFSidebarSubItem Id="@itemData?.Id" Title="@itemData.Title" IconClassNames="@itemData.IconClassNames" AnchorClassNames="@itemData.AnchorClassNames" SidebarItemType=@itemData.SidebarItemType></XFSidebarSubItem>
+            }
+        }
+    </ul>
+</li>
+
+

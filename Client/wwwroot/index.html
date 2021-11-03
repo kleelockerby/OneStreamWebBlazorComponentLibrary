@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>OneStreamWeb</title>
+    <base href="/" />
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="css/site.css">
+    <link href="_content/OneStreamWebBlazor.Components/css/site.css" rel="stylesheet" />
+</head>
+<body>
+    <app>
+        <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
+        <span class="sr-only">Loading...</span>
+    </app>
+    <!--<div class="wrapper">
+        <div id="blazor-error-ui">
+            An unhandled error has occurred.
+            <a href="" class="reload">Reload</a>
+            <a class="dismiss">🗙</a>
+        </div>
+    </div>-->
+    <script src="_content/OneStreamWebBlazor.Components/scripts/onestreamwebblazor.js"></script>
+    <script src="_framework/blazor.webassembly.js"></script>
+
+    <script>
+
+        function setElementValue(element, newValue)
+        {
+            element.value = newValue;
+            return element.value;
+        }
+
+    </script>
+</body>
+
+</html>

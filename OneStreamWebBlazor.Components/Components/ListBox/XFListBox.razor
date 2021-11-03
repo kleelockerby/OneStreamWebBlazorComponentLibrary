@@ -1,0 +1,18 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFComponentBase
+@typeparam TItem
+
+
+<div class="@ClassNames" style="@StyleNames" @attributes="@Attributes">
+    <ul class="@ContentClassNames" style="height: 137px;" @attributes="@Attributes">
+        @if (DataSource != null)
+        {
+            foreach (var item in DataSource)
+            {
+                string text = TextField?.Invoke(item);
+                <XFListBoxItem Text="@text" TItem="TItem" DataItem="item" SelectedListBoxItemChanged="@XFListBoxItem_Changed"></XFListBoxItem>
+            }
+        }
+
+    </ul>
+</div>

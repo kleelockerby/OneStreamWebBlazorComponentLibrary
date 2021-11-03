@@ -1,0 +1,170 @@
+﻿@inject HttpClient Http
+
+@if (countries == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <XFCard style="width: 350px; top: 170px; left: 360px; height: 600px;">
+        <XFCardHeader ShowBorder=true Title="ComboBox Component"></XFCardHeader>
+        <XFCardBody>
+            <div>
+                <div style="font-size: .80rem; padding: 5px; color: rgb(150, 150, 150);">Allow Filtering (FilterMode = StartsWith)</div>
+                <XFComboBox DataSource="@countries"
+                            TextField="@((item)=>item.CountryName)"
+                            ValueField="@((item)=>item.CountryCode)"
+                            SelectedItem="@selectedCountry1"
+                            SelectedItemChanged="@XFComboBox1_Changed"
+                            NoDisplayItems="5"
+                            AllowFiltering="true"
+                            AllowClear="false"
+                            PlaceHolder="Select A Country" />
+            </div>
+
+            <div style="margin-top: 40px;">
+                <div style="font-size: .80rem; padding: 5px; color: rgb(150, 150, 150);">Allow Filtering (FilterMode = Contains)</div>
+                <XFComboBox DataSource="@countries"
+                            TextField="@((item)=>item.CountryName)"
+                            ValueField="@((item)=>item.CountryCode)"
+                            SelectedItem="@selectedCountry3"
+                            SelectedItemChanged="@XFComboBox3_Changed"
+                            NoDisplayItems="5"
+                            AllowFiltering="true"
+                            FilterMode="@SearchFilterMode.Contains"
+                            AllowClear="true"
+                            PlaceHolder="Select A Country" />
+            </div>
+
+            <div style="margin-top: 40px;">
+                <div style="font-size: .80rem; padding: 5px; color: rgb(150, 150, 150);">Bind Initial Value and Allow Clear</div>
+                <XFComboBox DataSource="@countries"
+                            TextField="@((item)=>item.CountryName)"
+                            ValueField="@((item)=>item.CountryCode)"
+                            SelectedItem="@selectedCountry2"
+                            SelectedItemChanged="@XFComboBox2_Changed"
+                            NoDisplayItems="5"
+                            AllowFiltering="true"
+                            AllowClear="true"
+                            PlaceHolder="Select A Country" />
+            </div>
+        </XFCardBody>
+    </XFCard>
+
+    <div style="margin: 25px 0 0 430px; width: 65%;">
+        <div><h3 style="color: #000;">XFComboBox Class</h3></div>
+        <div style="margin-top: 20px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+            <div style="color: #0073e0;">public class XFComboBox&lt;TItem&gt;</div>
+            <div style="margin-top: 10px;">Inheritance: XFListBoxBase&lt;TItem&gt; : XFComponentBase</div>
+        </div>
+        <div style="margin-top: 15px; border-bottom: 1px solid #ccc;"><h4 style="color: #333;">Properties</h4></div>
+        <div style="font-size: .85rem; color: rgb(135, 135, 135);">
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">DataSource &lt;TItem&gt; (IEnumerable)</div>
+                <div style="display: inline-block;">Bound Data Source</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">TextField Func&ltTItem, string&gt;</div>
+                <div style="display: inline-block;">Text Property of DataSource</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">ValueField Func&ltTItem, string&gt;</div>
+                <div style="display: inline-block;">Value Property of DataSource</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">PlaceHolder Func&ltstring&gt;</div>
+                <div style="display: inline-block;">DropDown Placeholder</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">AllowClear &lt;bool&gt;</div>
+                <div style="display: inline-block;">Can Clear DropDown Selection. Adds Clear Icon</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">NoDisplayItems &lt;int&gt;</div>
+                <div style="display: inline-block;">Number of Visible Items in DropDown</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">AllowTextEntry &lt;bool&gt;</div>
+                <div style="display: inline-block;">Allows Text Input</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">AllowFiltering &lt;bool&gt;</div>
+                <div style="display: inline-block;">Allows Filtering of DropDown Results</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">FilterMode &lt;SearchFilterMode&gt; (Enum)</div>
+                <div style="display: inline-block;">Filtering Method: StartsWith or Contains</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">FilterCaseSensitivity &lt;FilterCaseSensitivity&gt; (Enum)</div>
+                <div style="display: inline-block;">Filtering Case Sensitivivity</div>
+            </div>
+            <div style="padding: 5px 0; border-bottom: 1px solid #D0D0D0;">
+                <div style="display: inline-block; width: 50%; color: #0073e0;">ItemTemplate RenderFragment&lt;TItem&gt; (Enum)</div>
+                <div style="display: inline-block;">Custom Template for ListBox Items</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 20px;">
+            <div><h4 style="color: #333; border-bottom: 1px solid #ccc;">Event Results</h4></div>
+            <div style="padding: 10px 0; background-color: #F0F0F0; font-size: .85rem;">
+                <div style="padding: 10px 30px;">
+                    <div style="display: inline-block; width: 20%; color: #0073e0;">@resultProperty</div>
+                    <div style="display: inline-block;">@results</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+}
+
+@code
+{
+    private string resultProperty = "";
+    private string results = "";
+    private string selectedCountryName1 = "";
+    private string selectedCountryName2 = "";
+    private string selectedCountryName3 = "";
+
+    private Country[] countries;
+    private Country selectedCountry1 { get; set; }
+    private Country selectedCountry2 { get; set; }
+    private Country selectedCountry3 { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        countries = await Http.GetFromJsonAsync<Country[]>("sample-data/countries.json");
+        selectedCountry2 = countries[3];
+    }
+
+    protected void XFComboBox1_Changed(object newValue)
+    {
+        selectedCountry1 = (Country)newValue;
+        selectedCountryName1 = selectedCountry1.CountryName;
+        resultProperty = "Selected Country:";
+        results = selectedCountryName1;
+        StateHasChanged();
+    }
+
+    protected void XFComboBox3_Changed(object newValue)
+    {
+        selectedCountry3 = (Country)newValue;
+        selectedCountryName3 = selectedCountry3.CountryName;
+        resultProperty = "Selected Country:";
+        results = selectedCountryName3;
+
+        StateHasChanged();
+    }
+
+    protected void XFComboBox2_Changed(object newValue)
+    {
+        selectedCountry2 = (Country)newValue;
+        selectedCountryName2 = selectedCountry2.CountryName;
+        resultProperty = "Selected Country:";
+        results = selectedCountryName2;
+
+        StateHasChanged();
+    }
+
+}

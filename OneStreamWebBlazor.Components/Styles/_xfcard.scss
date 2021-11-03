@@ -1,0 +1,43 @@
+﻿
+.xf-card {
+    position: absolute;
+    font-size: 14px;
+    display: block;
+    font-weight: 200;
+    border: 1px solid #ccc;
+    border-radius: $cardBorderRadius;
+    -webkit-box-shadow: 3px 4px 6px #a1a1a1;
+    box-shadow: 3px 5px 8px #a1a1a1;
+    background-color: $cardHeaderBGColor;
+}
+
+.xf-header {
+    border: none;
+    font-size: 100%;
+    margin: 0;
+    vertical-align: middle;
+}
+
+.xf-card .xf-header .xf-header-text {
+    font-size: $cardHeaderFontSize;
+    color: $cardHeaderFontColor;
+    padding: 0.60rem;
+    border-bottom: 1px solid $cardTopBtmBorderColor;
+    text-shadow: 0 3px 2px rgba(0, 0, 0, .35);
+}
+
+.xf-body {
+    padding: 0.60rem;
+    padding-bottom: 0.30rem;
+    vertical-align: middle;
+    background-color: $cardBodyBGColor;
+    color: $cardBodyColor;
+}
+
+.xf-card .xf-footer {
+    vertical-align: middle;
+    padding: 0.60rem;
+    text-align: left;
+    background-color: $cardFooterBGColor;
+    border-top: 1px solid$cardTopBtmBorderColor;
+}

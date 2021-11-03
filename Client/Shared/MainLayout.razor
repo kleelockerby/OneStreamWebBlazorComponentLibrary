@@ -1,0 +1,31 @@
+﻿@inherits LayoutComponentBase
+@using OneStreamWebBlazor.Client.Components.Sidebar
+
+<div class="app">
+    <div class="d-flex align-items-stretch w-100 flex-nowrap m-0 p-0">
+        <XFSidebar HeaderText="XF OnePlace">
+            <XFSidebarContent>
+                <XFSidebarItem Title="Workflow" IconClassNames="xf xf-Workflow" SidebarItemType="XFSidebarItemType.Workflow"></XFSidebarItem>
+                <XFSidebarItem Title="Cube Views" IconClassNames="xf xf-CubeView" SidebarItemType="XFSidebarItemType.CubeView"></XFSidebarItem>
+                <XFSidebarItem Title="Dashboards" IconClassNames="xf xf-Dashboard" SidebarItemType="XFSidebarItemType.Dashboard"></XFSidebarItem>
+                <XFSidebarItem Title="Documents" IconClassNames="xf xf-Documents" SidebarItemType="XFSidebarItemType.Document"></XFSidebarItem>
+            </XFSidebarContent>
+        </XFSidebar>
+        <main class="main-content-container">
+            <header class="main-header">
+                <XFHeader></XFHeader>
+            </header>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="main-content">
+                        <div class="p-2">
+                            @Body
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</div>
+
+

@@ -1,0 +1,99 @@
+﻿
+/* ---- Colors ---- */
+$blueMain: #101e2e;
+$blueMedium: #23425c;
+$blueLight: #2b6386;
+$blueCyan: #2fb3f3;
+$blueCyanLight: #70c6f1;
+$blueDark: #0e1922;
+$orangeMain: #e08e5e;
+$orangeDark: #c97a4c;
+$orangeGradientTop: #fe7f26;
+$orangeGradientBtm: #d75d1a;
+$greenMain: #739500;
+$anchorColor: $blueLight;
+
+$outlineColor: #1a78bd;
+$listItemThumbColor: $outlineColor;
+
+$buttonGradientTop: $orangeGradientTop;
+$buttonGradientBottom: $orangeGradientBtm;
+$baseFontColor: rgb(66, 66, 66);
+
+/* ---- Sidebar ---- */
+
+$SidebarGradientStartColor: #305a72;
+$SidebarGradientEndColor: #0d364c;
+
+$sidebarFontSize: 1.0rem;
+$sidebarWidth: 19.375em; /* 310px */
+$sidebarCollapsedWidth: 2.5em;
+$sidebarTextColor: rgba(255, 255, 255, 0.9);
+$sidebarFlyoutTextColor: rgba(255, 255, 255, 0.9);
+$sidebarFlyoutIndentTextColor: $orangeMain;
+$SidebarBGColor: $blueMain;
+$SidebarFlyoutBGColor: $blueLight;
+$sidebarHeaderDisplay: table-cell;
+$sidebarheaderHeight: 3rem;
+$sidebarHeaderBGColor: $blueLight;
+$sidebarHeaderColor: #FFF;
+$sidebarHeaderImage: none;
+$sidebarDisplaySubHeader: block;
+
+$sidebarItemTopBtmPadding: 1.05em;
+$sidebarItemLeftRightPadding: 1em;
+$sidebarIconUpDownFontSize: 0.90em;
+$sidebarFlyoutItemPaddingTopBtm: 0.5em;
+$sidebarFlyoutItemPaddingLeftRight: 1.0em;
+$sidebarFlyoutItemIndent: 3.4em;
+$sidebarFlyoutItemFontSize: 1.0em;
+$sidebarFlyoutIconFontSize: 0.55em;
+
+$scrollbarBGColor: $blueMain;
+$scrollbarThumbColor: $orangeMain;
+
+$headerTextColor: $blueLight;
+$headerBGColor: #f8f9fa;
+$headerImage: none;
+$headerHeight: 3rem;
+$navbarPaddingTopBtm: 0;
+$navbarPaddingLeftRight: 1rem;
+$navbarIconsRightMargin: 2.5rem;
+$navbarUserProfileFontSize: 0.95rem;
+$navbarUserProfilePaddingRight: 1.2rem;
+$navbarUserProfileColor: $blueLight;
+$navbarUserProfileFontWeight: 500;
+$headerIconColor: rgb(136, 136, 136);
+$headerTextAlign: center;
+$headerTextMargin: 0;
+
+$btnInfoBackgroundColor: $orangeMain;
+$btnInfoBorderColor: $orangeDark;
+
+$tabBorderTopColor: $blueLight;
+$tabBorderBottomColor: #FFF;
+$tabBorderWidth: 1px;
+$tabBorderRadius: 4px;
+$tabActiveItemColor: #FFF;
+$tabItemColor: $blueCyan;
+$tabBackgroundColor: $blueLight;
+$tabItemMarginLeft: .3125rem;
+
+$font-size-base: 1rem;
+$font-weight-base: 100;
+$font-family-base: 'robotoregular';
+
+$cardBorderRadius: .425rem;
+$cardTextColor: #949494;
+$cardHeaderFontSize: 1.25rem;
+$cardHeaderFontColor: $blueLight;
+$cardTopBtmBorderColor: #FFF;
+$cardHeaderBGColor: #FFF;
+$cardBodyColor: rgb(58, 58, 58);
+$cardBodyBGColor: #FFF;
+$cardFooterBGColor: #FFF;
+
+$listBoxBorderTopWidth: 1px;
+$listBoxBorderBottomWidth: 1px;
+$listBoxNoItemsDisplay: 5;
+$listItemHeight: 27px;

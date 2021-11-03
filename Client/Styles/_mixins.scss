@@ -1,0 +1,14 @@
+﻿@mixin gradient-vertical($start-color: #ccc, $end-color: #999, $background-color: #333) 
+{
+    background: $background-color;
+    background: -webkit-gradient(linear, left top, left bottom, from($start-color), to($end-color));
+    background: linear-gradient(to bottom, $start-color 0%, $end-color 100%);
+}
+
+@mixin transition-easeInOut($duration) 
+{
+    -webkit-transition: all $duration ease-in-out;
+    -moz-transition: all $duration ease-in-out;
+    -o-transition: all $duration ease-in-out;
+    transition: all $duration ease-in-out;
+}

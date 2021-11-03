@@ -1,0 +1,80 @@
+﻿@page "/authentication/login"
+@layout AuthenticationLayout
+@inject NavigationManager navigationManager
+
+@*@using OneStream.Shared.Common;
+    @using OneStreamWebBlazor.Shared
+    @using OneStreamWebBlazor.Client.Shared
+
+    @inject NavigationManager navigationManager
+    @inject ILocalStorageService storageService
+    @inject AuthenticationStateProvider  authenticationStateProvider
+    @inject HttpClient Http*@
+
+
+<div class="bg-login">
+    <div class="logo"><img src="images/OneStreamLogoWithTag.png" style="width: 350px; height: 94px;" /></div>
+    <div id="logtext">
+        <table>
+            <thead>
+                <tr>
+                    <td class="form-header-text">
+                        OneStream Authentication
+                    </td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <label for="webUrl"><b>Server Address</b></label>
+                        <input class="form-control" id="webUrl" name="Pers_Key" type="text" value="http://localhost:30704">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="userName"><b>User Name</b></label>
+                        <input class="form-control" id="userName" name="Pers_Key" type="text" value="ClarkKent">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="pwd"><b>Password</b></label>
+                        <input class="form-control" id="pwd" name="Pers_Key" type="text" value="****">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-body-bottom">
+                            <label for="app"><b>Application</b></label>
+                            <input class="form-control" id="app" name="Pers_Key" type="text" value="GolfStream v3.7">
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td class="form-footer-top">
+                        @*<input name="Submit" value="Login" type="button" @onclick="@OnClick">
+                        <input name="Submit" value="Open Application" type="submit" style="display: none;">*@
+                        <button type="submit" @onclick="@OnClick">Submit</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="form-footer-bottom">
+                        <a href="#" class="help_link">Password not working?&nbsp;|&nbsp; </a>
+                        <a href="#" class="help_link">Help&nbsp;|&nbsp;</a>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+
+@code
+{
+    protected void OnClick()
+    {
+        navigationManager.NavigateTo("/");
+    }
+}

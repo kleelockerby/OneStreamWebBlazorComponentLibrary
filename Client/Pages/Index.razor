@@ -1,0 +1,49 @@
+﻿@page "/"
+@*@inject IJSRuntime JSRuntime*@
+@using OneStreamWebBlazor.Client.Pages.Forms
+
+        <XFTabControl SelectedTab="@selectedTabName" SelectedTabChanged="@OnSelectedTabChanged" style="margin-top: 30px;">
+            <Items>
+                <XFTab Name="home" Title="Forms Components" IconClasses="fa fa-home"></XFTab>
+                <XFTab Name="combo" Title="ComboBox" IconClasses="xfChild xf-CubeView"></XFTab>
+                <XFTab Name="dashboard" Title="Dashboards" IconClasses="xfChild xf-Dashboard"></XFTab>
+                <XFTab Name="cubeview" Title="Cube Views" IconClasses="xfChild xf-CubeView"></XFTab>
+            </Items>
+            <Content>
+                <XFTabPanel Name="home">
+                    @DynamicRender
+                </XFTabPanel>
+                <XFTabPanel Name="combo">
+                    <ComboBoxPage></ComboBoxPage>
+                </XFTabPanel>
+                <XFTabPanel Name="dashboard">
+                    <SampleDashboard />
+                </XFTabPanel>
+                <XFTabPanel Name="cubeview">
+                    <Workflow />
+                </XFTabPanel>
+            </Content>
+        </XFTabControl>
+
+@code
+{
+    public string selectedTabName = "home";
+
+    private void OnSelectedTabChanged(string name)
+    {
+        selectedTabName = name;
+    }
+
+    private RenderFragment DynamicRender { get; set; }
+
+    public RenderFragment CreateComponent() => builder =>
+    {
+        builder.OpenComponent(0, typeof(FormsPage));
+        builder.CloseComponent();
+    };
+
+    protected override void OnInitialized()
+    {
+        DynamicRender = CreateComponent();
+    }
+}

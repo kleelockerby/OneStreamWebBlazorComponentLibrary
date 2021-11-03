@@ -1,0 +1,12 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFComponentBase
+@typeparam TItem
+
+@if (ItemTemplate == null)
+{
+    <li class="@ClassNames" @onclick="@OnClickHandler" style="@StyleNames" @attributes="@Attributes">@Text</li>
+}
+else
+{
+    <li class="@ClassNames" @onclick="@OnClickHandler" style="@StyleNames" @attributes="@Attributes">@ItemTemplate</li>
+}

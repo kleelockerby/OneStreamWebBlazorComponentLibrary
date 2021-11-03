@@ -1,0 +1,364 @@
+﻿/* ---- Colors ---- */
+/* ---- Sidebar ---- */
+/* 310px */
+@font-face {
+  font-family: 'open_sansregular';
+  src: url("../fonts/opensans/opensans-regular-webfont.eot");
+  src: url("../fonts/opensans/opensans-regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/opensans/opensans-regular-webfont.woff") format("woff"), url("../fonts/opensans/opensans-regular-webfont.ttf") format("truetype"), url("../fonts/opensans/opensans-regular-webfont.svg#open_sansregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'robotoregular';
+  src: url("../fonts/roboto/Roboto-Regular-webfont.eot");
+  src: url("../fonts/roboto/Roboto-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/roboto/Roboto-Regular-webfont.woff") format("woff"), url("../fonts/roboto/Roboto-Regular-webfont.ttf") format("truetype"), url("../fonts/roboto/Roboto-Regular-webfont.svg#robotoregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'antonioregular';
+  src: url("../fonts/antonio/antonio-regular-webfont.woff2") format("woff2"), url("../fonts/antonio/antonio-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'oswaldregular';
+  src: url("../fonts/Oswald/oswald-v16-latin-regular-webfont.woff2") format("woff2"), url("../fonts/Oswald/oswald-v16-latin-regular-webfont.woff") format("woff"), url("../fonts/Oswald/oswald-v16-latin-regular.svg") format("svg"), url("../fonts/Oswald/oswald-v16-latin-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'cinzel';
+  src: url("../fonts/cinzel/cinzel-regular-webfont.woff2") format("woff2"), url("../fonts/cinzel/cinzel-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'latoregular';
+  src: url("../fonts/lato/xf-regular-webfont.woff2") format("woff2"), url("../fonts/lato/xf-regular-webfont.woff") format("woff"), url("../fonts/lato/xf-regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal; }
+
+@font-face {
+  font-family: 'SegoeUI';
+  src: url("../fonts/segoe/segoeui.woff2") format("woff2"), url("../fonts/segoe/segoeui.woff") format("woff"), url("../fonts/segoe/segoeui.ttf") format("truetype");
+  font-weight: 400; }
+
+button:not(:disabled), [type="button"]:not(:disabled) {
+  background: #fe7f26;
+  background: -moz-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fe7f26), color-stop(100%, #d75d1a));
+  background: -webkit-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -o-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -ms-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: linear-gradient(to bottom, #fe7f26 0%, #d75d1a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$buttonGradientTop', endColorstr='$buttonGradientBottom',GradientType=0 );
+  border: 1px solid;
+  border-color: #fe7f26;
+  -webkit-box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 30px;
+  padding: 0 10px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
+
+button[type="submit"]:not(:disabled) {
+  background: #fe7f26;
+  background: -moz-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #fe7f26), color-stop(100%, #d75d1a));
+  background: -webkit-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -o-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: -ms-linear-gradient(top, #fe7f26 0%, #d75d1a 100%);
+  background: linear-gradient(to bottom, #fe7f26 0%, #d75d1a 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$buttonGradientTop', endColorstr='$buttonGradientBottom',GradientType=0 );
+  border: 1px solid;
+  border-color: #fe7f26;
+  -webkit-box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 6px 5px -5px rgba(0, 0, 0, 0.8);
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  height: 30px;
+  padding: 0 10px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
+
+button[type="submit"]:focus, button[type="button"]:focus {
+  outline: none; }
+
+.btn-info {
+  color: #fff;
+  background-color: #e08e5e;
+  border-color: #c97a4c; }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-left: 130px;
+  /* Not in Modal-center original - to compensate for sidebar */
+  z-index: 1050;
+  display: none;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  outline: 0; }
+
+.modal.open {
+  display: block;
+  text-align: center; }
+
+.modal-dialog {
+  max-width: 500px;
+  margin: 1.75rem auto; }
+
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem); }
+
+.modal-content {
+  position: relative;
+  width: 100%;
+  pointer-events: auto;
+  background-color: #fff;
+  border: 1px solid #3898bb;
+  border-radius: 0.3rem;
+  outline: 0; }
+
+.modal-header {
+  display: block;
+  text-align: left;
+  justify-content: space-between;
+  padding: 0.3rem 1rem;
+  border-bottom: 1px solid #2b6386;
+  border-top-left-radius: .3rem;
+  border-top-right-radius: .3rem;
+  color: #fff;
+  background-color: #457399; }
+
+.modal-title {
+  margin-bottom: 0;
+  line-height: 1.5; }
+
+.modal-header-right {
+  float: right;
+  padding-left: 0.5rem; }
+
+.modal-body {
+  position: relative;
+  display: block;
+  text-align: left;
+  padding: .4rem; }
+
+.modal-footer {
+  display: block;
+  text-align: right;
+  padding: 0 1rem 0.3rem 1rem;
+  border-top: none;
+  border-bottom-right-radius: .3rem;
+  border-bottom-left-radius: .3rem; }
+
+.grid-table {
+  display: grid;
+  border-radius: 0.40rem 0.40rem 0 0;
+  background-color: #FFF;
+  border: 1px solid #457399; }
+
+.grid-table-row {
+  display: grid;
+  grid-template-columns: 26px 1fr 1fr;
+  font-size: .775rem;
+  color: #636363; }
+
+.grid-table-row:not(:last-child) {
+  border-bottom: 1px solid #457399; }
+
+.grid-table-row:first-child {
+  border-radius: 0.40rem 0.40rem 0 0;
+  background: #3898bb;
+  font-size: .875rem;
+  font-weight: 500;
+  color: #161616; }
+
+.grid-table-cell {
+  padding: .1rem 0; }
+
+.grid-table-cell:not(:last-child) {
+  border-right: 1px solid #457399; }
+
+.grid-table-cell:not(:first-child) {
+  padding-left: .615rem; }
+
+.grid-table-row:not(:first-child) .grid-table-cell:first-child {
+  background: #3898bb; }
+
+.grid-table-cell:first-child {
+  text-align: center; }
+
+.grid-buffer {
+  display: grid;
+  background-color: #FFF;
+  border: 1px solid #457399;
+  border-top: none;
+  height: 195px; }
+
+.btn-sm {
+  padding: .01rem .5rem;
+  font-size: .875rem;
+  line-height: 1.5;
+  border-radius: .2rem;
+  color: #fff;
+  background-color: #3898bb;
+  border-color: #457399; }
+
+.xf-card {
+  position: absolute;
+  font-size: 14px;
+  display: block;
+  font-weight: 200;
+  border: 1px solid #ccc;
+  border-radius: 0.425rem;
+  -webkit-box-shadow: 3px 4px 6px #a1a1a1;
+  box-shadow: 3px 5px 8px #a1a1a1;
+  background-color: #FFF; }
+
+.xf-header {
+  border: none;
+  font-size: 100%;
+  margin: 0;
+  vertical-align: middle; }
+
+.xf-card .xf-header .xf-header-text {
+  font-size: 1.25rem;
+  color: #2b6386;
+  padding: 0.60rem;
+  border-bottom: 1px solid #FFF;
+  text-shadow: 0 3px 2px rgba(0, 0, 0, 0.35); }
+
+.xf-body {
+  padding: 0.60rem;
+  padding-bottom: 0.30rem;
+  vertical-align: middle;
+  background-color: #FFF;
+  color: #3a3a3a; }
+
+.xf-card .xf-footer {
+  vertical-align: middle;
+  padding: 0.60rem;
+  text-align: left;
+  background-color: #FFF;
+  border-top: 1px solid #FFF; }
+
+.xf-combo {
+  width: 100%;
+  text-align: center;
+  font-family: 'SegoeUI',Arial,Sans-Serif;
+  font-size: 0.90rem; }
+
+.xf-combo-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  position: relative; }
+  .xf-combo-wrapper input[type="text"] {
+    flex: 2 1 auto;
+    height: 100%;
+    font-size: 0.90rem; }
+  .xf-combo-wrapper span {
+    position: absolute;
+    top: 4px;
+    right: 40px; }
+  .xf-combo-wrapper a.xf-button {
+    width: 30px;
+    background: #d75d1a;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fe7f26), to(#d75d1a));
+    background: linear-gradient(to bottom, #fe7f26 0%, #d75d1a 100%);
+    border: 1px solid #1a78bd;
+    border-left: none;
+    border-radius: 0 4px 4px 0;
+    color: white;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0 10px;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
+  .xf-combo-wrapper a.xf-button::before {
+    font-family: fontawesome;
+    content: '\f0d7';
+    color: #FFF;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3); }
+
+.xf-scrollbox {
+  position: relative;
+  height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #FFF;
+  border-style: solid;
+  border-color: #FFF;
+  border-width: 1px 1px 1px 1px;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out; }
+  .xf-scrollbox.show {
+    height: 350px;
+    /*height: ($listItemHeight * $listBoxNoItemsDisplay) + $listBoxBorderTopWidth + $listBoxBorderBottomWidth;*/
+    /*border: 1px solid #CCC;*/
+    overflow: auto;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out; }
+  .xf-scrollbox::-webkit-scrollbar-track {
+    background-color: #FFF;
+    border-left: 1px solid #ccc; }
+  .xf-scrollbox::-webkit-scrollbar {
+    width: 15px; }
+  .xf-scrollbox::-webkit-scrollbar-thumb {
+    background: #1a78bd;
+    border: 4px solid transparent;
+    background-clip: content-box;
+    padding: 0 2px;
+    border-radius: 8px; }
+  .xf-scrollbox ul.xf-listbox {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #CCC;
+    border-width: 1px 1px 1px 1px;
+    list-style: none;
+    text-decoration: none;
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow-y: hidden;
+    z-index: 100; }
+    .xf-scrollbox ul.xf-listbox li.xf-listitem {
+      margin-left: 0;
+      padding: 0 10px;
+      display: inline-block;
+      width: 100%;
+      font-family: 'SegoeUI';
+      font-size: 0.90rem;
+      height: 27px;
+      /*border: 2px solid rgba(0, 0, 0, 0);*/
+      white-space: normal;
+      cursor: pointer; }
+      .xf-scrollbox ul.xf-listbox li.xf-listitem.selected {
+        background: #d75d1a;
+        background: -webkit-gradient(linear, left top, left bottom, from(#fe7f26), to(#d75d1a));
+        background: linear-gradient(to bottom, #fe7f26 0%, #d75d1a 100%);
+        color: white;
+        border: 2px solid #1a78bd; }
+    .xf-scrollbox ul.xf-listbox li.xf-listitem:hover {
+      border: 2px solid #e08e5e; }

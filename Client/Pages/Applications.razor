@@ -1,0 +1,96 @@
+@page "/applications"
+@using OneStream.Shared.Common;
+@using OneStream.Shared.Wcf;
+@using OneStreamWebBlazor.Shared
+@inject HttpClient Http
+
+
+<p>This component demonstrates fetching a list of OneStream applications from the server.</p>
+
+<button class="btn btn-primary" @onclick="OnGetApplications">Get Applications</button>
+
+<h1>Applications</h1>
+
+
+@if (this.xfApplicationsDto == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Unique ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (this.xfApplicationsDto.Applications != null)
+            {
+                foreach (var xfApplication in this.xfApplicationsDto.Applications)
+                {
+                    <tr>
+                        <td>@xfApplication.UniqueID.ToString()</td>
+                        <td>@xfApplication.Name</td>
+                        <td>@xfApplication.Description</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private XFLogonResponseDto xfLogonResponseDto = null;
+    private XFApplicationsDto xfApplicationsDto = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        // TEST. Call the server to log on and get a SessionInfo
+        XFLogonRequestDto logonRequestDto = new XFLogonRequestDto(string.Empty, "Admin", "123", ClientModuleType.MVC, XFVersionInfo.XFVersion, null);
+        HttpResponseMessage responseMessage = await Http.PostAsJsonAsync<XFLogonRequestDto>("api/internal/applications/Logon", logonRequestDto);
+        this.xfLogonResponseDto = await responseMessage?.Content?.ReadFromJsonAsync<XFLogonResponseDto>();
+
+        // Get the list of applications.
+        if (this.xfLogonResponseDto != null)
+        {
+            SessionInfo si = this.xfLogonResponseDto.SI;
+            if ((si != null) && (si.IsAuthenticated))
+            {
+                XFBaseSiRequestDto siDto = new XFBaseSiRequestDto(si);
+                HttpResponseMessage responseMessage2 = await Http.PostAsJsonAsync<XFBaseSiRequestDto>("api/internal/applications/GetApplications", siDto);
+                this.xfApplicationsDto = await responseMessage2?.Content?.ReadFromJsonAsync<XFApplicationsDto>();
+            }
+        }
+    }
+
+    private async void OnGetApplications()
+    {
+        // Get the list of applications.
+        if (this.xfLogonResponseDto != null)
+        {
+            SessionInfo si = this.xfLogonResponseDto.SI;
+            if ((si != null) && (si.IsAuthenticated))
+            {
+                XFBaseSiRequestDto siDto = new XFBaseSiRequestDto(si);
+                HttpResponseMessage responseMessage = await Http.PostAsJsonAsync<XFBaseSiRequestDto>("api/internal/applications/GetApplications", siDto);
+                this.xfApplicationsDto = await responseMessage?.Content?.ReadFromJsonAsync<XFApplicationsDto>();
+
+                // Change the date in the description of each item just so we can see the UI change.
+                if ((this.xfApplicationsDto != null) && (this.xfApplicationsDto.Applications != null))
+                {
+                    string dateTime = DateTime.Now.ToLongTimeString();
+                    foreach (XFApplication app in this.xfApplicationsDto.Applications)
+                    {
+                        app.Description = dateTime;
+                    }
+                }
+
+                // Redraw the UI.
+                StateHasChanged();
+            }
+        }
+    }
+}

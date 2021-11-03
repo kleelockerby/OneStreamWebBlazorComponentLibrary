@@ -1,0 +1,94 @@
+﻿@import "../wwwroot/lib/bootstrap/scss/bootstrap";
+@import "../wwwroot/lib/font-awesome/scss/font-awesome.scss";
+@import "../wwwroot/lib/xf-awesome/scss/xf-awesome.scss";
+@import "variables";
+@import "mixins";
+@import "elements";
+@import "fontFaces";
+@import "xfsidebar";
+@import "xfheader";
+@import "xftabs";
+@import "login";
+@import "xfdashboard";
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html, body {
+    position: relative;
+}
+
+body {
+    font-size: $font-size-base;
+    font-family: $font-family-base;
+    font-weight: $font-weight-base;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    background-color: #fefefe;
+}
+
+.app {
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* -----------------  main -------------------- */
+
+.main-content-container {
+    width: 100%;
+    padding: 0;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.main-content {
+    width: 100%;
+}
+
+
+.btn-info {
+    color: #fff;
+    background-color: $btnInfoBackgroundColor;
+    border-color: $btnInfoBorderColor;
+}
+
+.fa-user{margin-right:10px;}
+.fa-bars:before{content:"\f0c9";color:$orangeMain;}
+.fa-close { color: #999; }
+.xf-Actual-flyout:before{content:"\e901";color:$blueDark;}
+.xf-CubeView-flyout:before{content:"\e902";color:$orangeMain;}
+.xf-Dashboard-flyout:before{content:"\e903";color:$orangeMain;}
+.xf-Folder-flyout:before{content:"\e904";color:$blueDark;}
+.xf-PresProfile:before{content:"\e906";color:$blueDark;}
+.xf-TimeDim-flyout:before{content:"\e907";color:$blueDark;}
+.xf-Workflow-flyout:before{content:"\e908";color:$blueDark;}
+
+
+.pointer{cursor:pointer;}
+
+.openSans { font-family: 'open_sansregular', Arial, Verdana; }
+.antonio { font-family: 'antonioregular';}
+
+.bgHeaderGradient 
+{ 
+    @include gradient-y($start-color:$SidebarGradientStartColor, $end-color:$SidebarGradientEndColor, $start-percent: 0%, $end-percent: 100%); 
+}
+
+.paraText {
+    font-size: $paraTextFontSize;
+    color: rgb(83, 83, 83);
+}
+
+.fa-spinner.xfheader { color: $headerIconColor; }
+.fa-refresh.xfheader { color: $headerIconColor; }
+.fa-question-circle-o.xfheader { color: $headerIconColor; }
+.fa-clipboard.xfheader { color: $headerIconColor; }

@@ -1,0 +1,216 @@
+﻿@using OneStream.Shared.Wcf;
+@using Newtonsoft.Json
+@using System.ComponentModel.DataAnnotations
+@inject ILocalStorageService storageService
+@inject AuthenticationStateProvider  authenticationStateProvider
+@inject HttpClient Http
+
+<style>
+    .validation-message {
+        color: #ff0000;
+    }
+</style>
+
+<EditForm Model="model" OnValidSubmit="SubmitForm">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+
+        <XFCard style="width: 350px; top: 170px; left: 360px; height: 680px;">
+            <XFCardHeader ShowBorder=true Title="Input Form Controls"></XFCardHeader>
+            <XFCardBody>
+                <div class="form-group">
+                    <label for="textbox">TextBox: </label>
+                    <XFTextBox id="textbox" Value="@model.Name" Size=@TextBoxSize.Small ValueChanged="@((v)=> { model.Name = v; } )"></XFTextBox>
+                    <ValidationMessage For="() => model.Name" />
+                </div>
+                <div class="form-group">
+                    <label for="textboxnumber">TextBoxNumber: </label>
+                    <XFTextBoxNumber id="textboxnumber" Step=@stepVal @bind-Value="@model.ID" Size=@TextBoxSize.Small />
+                    <ValidationMessage For="() => model.ID" />
+                </div>
+                <div class="form-group">
+                    <label for="textboxdate">TextBoxDate: </label>
+                    <XFTextBoxDate id="textboxdate" @bind-Value="model.SomeDate" Size=@TextBoxSize.Small />
+                    <ValidationMessage For="() => model.SomeDate" />
+                </div>
+                <div class="form-group">
+                    <label for="textaarea">TextArea: </label>
+                    <XFTextArea id="textaarea" @bind-Value="model.Memo" Size=@TextBoxSize.Small Rows="3" Cols="50" />
+                    <ValidationMessage For="() => model.Memo" />
+                </div>
+                <div class="form-group">
+                        <label for="select">DropDown: </label>
+                        <XFSelect SelectedValue="3" Size=@TextBoxSize.Small>
+                            <XFSelectItem Value="1">1</XFSelectItem>
+                            <XFSelectItem Value="2">2</XFSelectItem>
+                            <XFSelectItem Value="3">3</XFSelectItem>
+                            <XFSelectItem Value="4">4</XFSelectItem>
+                        </XFSelect>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectenum">DropDown (Bind to enum): </label>
+                        <XFSelect @bind-SelectedValue=@textColor>
+                            <XFSelectItem Value=TextColor.Info>Defense</XFSelectItem>
+                            <XFSelectItem Value=TextColor.Primary>Diplomacy</XFSelectItem>
+                            <XFSelectItem Value=TextColor.Secondary>Explore</XFSelectItem>
+                        </XFSelect>
+                    </div>
+                @if (objProfiles?.Count > 0)
+                {
+                    <div class="form-group">
+                            <label for="dropdowndashboards">Dashboard Profiles: </label>
+                            <XFSelectList Data="@objProfiles" TextField="@((item)=>item.Name)" ValueField="@((item)=>item.Value)" SelectedValue="@selectedProfileValue" SelectedValueChanged="@MyProfileChangedHandler"></XFSelectList>
+                    </div>
+                }
+
+            </XFCardBody>
+            <XFCardFooter>
+                <button type="submit">Submit</button>
+            </XFCardFooter>
+        </XFCard>
+    </EditForm>
+
+@*<div style="margin: 50px;">
+    <XFTextBox id="textbox" Value="@model.Name" Size=@TextBoxSize.Small ValueChanged="@PersonChanged"></XFTextBox>
+    <XFTextBox id="textbox" Value="@model.Name" Size=@TextBoxSize.Small ValueChanged="@((v)=> { model.Name = v; } )"></XFTextBox>
+    <XFTextBox id="textbox" @bind-Value="@model.Name" Size=@TextBoxSize.Small></XFTextBox>
+</div>*@
+
+<div style="margin: 25px 0 0 430px; width: 65%;">
+    <div><h3 style="color: #000;">Input Classes</h3></div>
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFTextBox</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;string&gt; : XFComponentBase</div>
+    </div>
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFTextBoxNumber&lt;TValue&gt;</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;TValue&gt; : XFComponentBase</div>
+    </div>
+
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFTextBoxDate&lt;TValue&gt;</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;TValue&gt; : XFComponentBase</div>
+    </div>
+
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFTextArea</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;string&gt; : XFComponentBase</div>
+    </div>
+
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFSelect</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;TValue&gt; : XFComponentBase</div>
+    </div>
+
+    <div style="margin-top: 10px; font-size: .80rem; padding: 10px; background-color: #e6e4e4;">
+        <div style="color: #0073e0;">public class XFSelectList</div>
+        <div style="margin-top: 2px;">Inheritance: XFInputBase&lt;TItem,TValue&gt; : XFComponentBase</div>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <div><h4 style="color: #333; border-bottom: 1px solid #ccc;">Event Results</h4></div>
+        <div style="padding: 10px 0; background-color: #F0F0F0; font-size: .85rem;">
+            <div style="padding: 10px 30px;">
+                <div style="margin: 10px 0;">Name: @result1</div>
+                <div style="margin: 10px 0;">ID: &nbsp; &nbsp; &nbsp; @result2</div>
+                <div style="margin: 10px 0;">Memo: @result3</div>
+                <div style="margin: 10px 0;">Date: @result4</div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@code
+{
+    [CascadingParameter] protected Task<AuthenticationState> authenticationState { get; set; }
+
+    protected decimal stepVal = 1.5M;
+    protected string result;
+
+    protected string result1;
+    protected string result2;
+    protected string result3;
+    protected string result4;
+
+    TextColor textColor = TextColor.Danger;
+
+    object selectedProfileValue { get; set; } = "1";
+    List<Profile> objProfiles = new List<Profile>();
+
+    //User model = new User() { Name = "name", ID = 100, Memo = "This is a long description", SomeDate = DateTime.UtcNow };
+    User model = new User() { ID = 100, Name = "Clark", Memo = "Memo", SomeDate = DateTime.UtcNow };
+    string checkedValue = "dashboards";
+
+    public class User
+    {
+        [Required]
+        [StringLength(20, ErrorMessage = "Name is Required.")]
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public decimal IdDec { get; set; }
+        public string Memo { get; set; }
+        public DateTime SomeDate { get; set; }
+    }
+
+
+    public class Profile
+    {
+        public string Name { get; set; }
+        public string Value { get; set; }
+
+        public Profile(string _name, string _value)
+        {
+            this.Name = _name;
+            this.Value = _value;
+        }
+    }
+
+    private void PersonChanged(object newValue)
+    {
+        string newName = newValue.ToString();
+        model.Name = newName;
+        result1 = newName;
+        StateHasChanged();
+    }
+
+    void MyProfileChangedHandler(object newValue)
+    {
+        selectedProfileValue = newValue;
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var userState = authenticationState.Result;
+        string dashboardProfilesFromClaim = userState?.User?.FindFirst("DashboardProfiles")?.Value;
+
+        if (!string.IsNullOrEmpty(dashboardProfilesFromClaim))
+        {
+            List<DashboardProfileInfo> dashboardProfileInfo = await Task.Run(() => JsonConvert.DeserializeObject<List<DashboardProfileInfo>>(dashboardProfilesFromClaim));
+
+            int i = 1;
+            foreach (DashboardProfileInfo dashboardProfile in dashboardProfileInfo)
+            {
+                objProfiles.Add(new Profile(dashboardProfile.Profile.Name, i++.ToString()));
+            }
+        }
+        StateHasChanged();
+    }
+
+    void OnCheckedValueChanged(string value)
+    {
+        checkedValue = value;
+    }
+
+    private void SubmitForm()
+    {
+        //result = $"{model.Name} - {model.ID} - {model.Memo} - {model.SomeDate}  ";
+        result1 = $"{model.Name}";
+        result2 = $"{model.ID}";
+        result3 = $"{model.Memo}";
+        result4 = $"{model.SomeDate}";
+    }
+
+
+}

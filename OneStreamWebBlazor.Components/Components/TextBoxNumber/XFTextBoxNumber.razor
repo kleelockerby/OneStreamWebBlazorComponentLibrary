@@ -1,0 +1,15 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFInputBase<TValue>
+@typeparam TValue
+
+    <input type="number"
+           step="@Step"
+           inputmode="numeric"
+           class="@ClassNames"
+           style="@StyleNames"
+           value="@CurrentValueAsString"
+           placeholder="@Placeholder"
+           disabled="@Disabled"
+           readonly="@ReadOnly"
+           @onchange="@OnChangeAsync"
+           @attributes="@Attributes" />

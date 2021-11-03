@@ -1,0 +1,23 @@
+﻿@inject AuthenticationStateProvider authenticationStateProvider
+@inject NavigationManager  navigationManager
+
+<AuthorizeView>
+    <ul class="list-unstyled components">
+        <li>
+            <a href="#" onclick="@Logout()">
+                <i class="fa fa-sign-out"></i>
+                Logout
+            </a>
+        </li>
+    </ul>
+</AuthorizeView>
+
+@code {
+
+    async Task Logout()
+    {
+        var localStateProvider = (LocalAuthenticationStateProvider)authenticationStateProvider;
+        await localStateProvider.LogoutAsync();
+        navigationManager.NavigateTo("/authentication/login");
+    }
+}

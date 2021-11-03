@@ -1,0 +1,60 @@
+﻿
+.nav-tabs {
+    border-bottom: 1px solid #ccc;
+}
+
+.nav-tabs .nav-item {
+    margin-left: $tabItemMarginLeft;
+}
+
+.nav-tabs .nav-link {
+    display: block;
+    font-size: .85rem;
+    font-weight: 100;
+    display: block;
+    padding: 0.27rem 0.55rem;
+}
+
+.nav-tabs .nav-link.dashboard.active {
+    color: $tabActiveItemColor;
+    background-color: $tabBackgroundColor;
+    border-color: $tabBorderTopColor $tabBorderTopColor $tabBorderBottomColor $tabBorderTopColor;
+    border-width: 0 0 $tabBorderWidth 0;
+    border-top-left-radius: $tabBorderRadius;
+    border-top-right-radius: $tabBorderRadius;
+}
+
+.nav-tabs .nav-link.dashboard {
+    color: $tabItemColor;
+}
+
+.nav-item-content {
+    width: 100%;
+}
+
+.nav-item-content > .nav-item-panel {
+    display: none;
+}
+
+.nav-item-content > .active {
+    display: block;
+}
+
+a.dashboard:not([href]):not([tabindex]) {
+    color: $tabItemColor;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a.dashboard {
+    color: $tabItemColor;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a.dashboard:after {
+    content: '\f00d';
+    font-family: fontawesome;
+    margin-left: .625rem;
+    font-weight: 100;
+}

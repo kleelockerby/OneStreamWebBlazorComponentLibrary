@@ -1,0 +1,9 @@
+﻿@namespace OneStreamWebBlazor.Components.Components
+@inherits XFInputBase<IReadOnlyList<TValue>>
+@typeparam TValue
+
+<select value="@CurrentValueAsString" @onchange="@OnChangeAsync" class="@ClassNames" style="@StyleNames" @attributes="@Attributes">
+    <CascadingValue Value=this>
+        @ChildContent
+    </CascadingValue>
+</select>
